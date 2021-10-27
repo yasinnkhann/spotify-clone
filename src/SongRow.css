@@ -3,8 +3,8 @@
   padding: 20px;
   display: flex;
   align-items: center;
-  z-index: 100;
   color: white;
+  z-index: 100;
 }
 
 .songRow:hover {
