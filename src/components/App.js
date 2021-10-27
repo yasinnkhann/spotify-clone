@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import Login from './Login';
-import { getTokenFromUrl } from './spotify';
 import SpotifyWebApi from 'spotify-web-api-js';
-import Player from './Player';
-import { useStateValue } from './StateProvider';
+import Login from './Login.js';
+import Player from './Player.js';
+import { useStateValue } from '../StateProvider.js';
+import { getTokenFromUrl } from '../spotifyConfig.js';
 
 const spotify = new SpotifyWebApi();
 
@@ -22,6 +22,7 @@ function App() {
       });
 
       spotify.setAccessToken(_token);
+
       spotify.getMe().then(user => {
         dispatch({
           type: 'SET_USER',
@@ -36,17 +37,17 @@ function App() {
         });
       });
 
-      spotify.getPlaylist('37i9dQZEVXcJB9rSjvn6am').then(response =>
+      spotify.getPlaylist('37i9dQZEVXcJB9rSjvn6am').then(res =>
         dispatch({
           type: 'SET_DISCOVER_WEEKLY',
-          discover_weekly: response,
+          discover_weekly: res,
         })
       );
 
-      spotify.getMyTopArtists().then(response =>
+      spotify.getMyTopArtists().then(res =>
         dispatch({
           type: 'SET_TOP_ARTISTS',
-          top_artists: response,
+          top_artists: res,
         })
       );
 
@@ -54,20 +55,12 @@ function App() {
         type: 'SET_SPOTIFY',
         spotify: spotify,
       });
-
-      spotify.getMe().then(user => {
-        dispatch({
-          type: 'SET_USER',
-          user,
-        });
-      });
     }
-  }, [token, dispatch]);
+  }, [dispatch]);
 
   return (
     <div className='app'>
-      {!token && <Login />}
-      {token && <Player spotify={spotify} />}
+      {token ? <Player spotify={spotify} /> : <Login />}
     </div>
   );
 }

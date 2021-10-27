@@ -1,8 +1,8 @@
 import React from 'react';
-import './Player.css';
-import Sidebar from './Sidebar';
-import Footer from './Footer';
-import Body from './Body';
+import Body from './Body.js';
+import Sidebar from './Sidebar.js';
+import Footer from './Footer.js';
+import '../styles/Player.css';
 
 function Player({ spotify }) {
   return (

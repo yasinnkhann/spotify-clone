@@ -1,11 +1,11 @@
 import React from 'react';
-import './Body.css';
-import Header from './Header';
-import { useStateValue } from './StateProvider';
-import SongRow from './SongRow';
-import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
+import Header from './Header.js';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import SongRow from './SongRow.js';
+import { useStateValue } from '../StateProvider.js';
+import '../styles/Body.css';
 
 function Body({ spotify }) {
   const [{ discover_weekly }, dispatch] = useStateValue();
@@ -13,7 +13,7 @@ function Body({ spotify }) {
   const playPlaylist = id => {
     spotify
       .play({
-        context_uri: `spotify:playlist:37i9dQZEVXcJZyENOWUFo7`,
+        context_uri: `spotify:playlist:37i9dQZEVXcJB9rSjvn6am`,
       })
       .then(res => {
         spotify.getMyCurrentPlayingTrack().then(r => {
