@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/SongRow.css';
 
-function SongRow({ track = 'test', playSong }) {
+function SongRow({ track, playSong }) {
   console.log(track);
   return (
     <div className='songRow' onClick={() => playSong(track.id)}>
